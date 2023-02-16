@@ -11,17 +11,39 @@ const Container = styled.div`
   width: 800px;
 `;
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+  const allPokemon = require("../../src/pokemon.json"); // this is static site generation (SSG) when pokemon.json is location inside src
+  return {
+    paths: allPokemon.map((p) => ({
+      params: {
+        id: p.id.toString(),
+      },
+    })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context) {
+  const allPokemon = require("../../src/pokemon.json"); // this is static site generation (SSG) when pokemon.json is location inside src
+  const pokemon = allPokemon.find(
+    ({ id }) => id.toString() === context.params.id
+  );
+  return {
+    props: { pokemon },
+  };
+}
+
+/* export async function getServerSideProps(context) {
   const allPokemon = await (
     await fetch("http://localhost:3000/pokemon.json")
-  ).json();
+  ).json(); // this is for server-side rendering (SSR) when pokemon.json was located in public
   const pokemon = allPokemon.find(
     ({ id }) => id.toString() === context.query.id
   );
   return {
     props: { pokemon },
   };
-}
+} */
 
 const Pokemon = ({ pokemon }) => {
   return (

@@ -23,17 +23,16 @@ const Container = styled.div`
   width: 800px;
 `;
 
-export async function getServerSideProps() {
-  const pokemon = await (
+/* export async function getServerSideProps() {
+  const allPokemon = await (
     await fetch("http://localhost:3000/pokemon.json")
-  ).json();
+  ).json(); // this is for server-side rendering (SSR) when pokemon.json was located in public
   return {
-    props: { pokemon },
+    props: { pokemon: allPokemon },
   };
-}
+} */
 
-const Home = ({ pokemon }) => {
-  store.setPokemon(pokemon);
+const Home = () => {
   return (
     <>
       <CssBaseline />
