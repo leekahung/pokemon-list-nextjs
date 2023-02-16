@@ -5,8 +5,6 @@ import PokemonInfo from "../components/PokemonInfo";
 import PokemonFilter from "../components/PokemonFilter";
 import PokemonTable from "../components/PokemonTable";
 
-import store from "@/src/store";
-
 const Title = styled.h1`
   text-align: center;
 `;
