@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "export": "next export",
+    "dev": "NODE_ENV=development && next dev",
+    "build": "NODE_ENV=development && next build",
+    "export": "NODE_ENV=development && next export",
     "start": "next start",
     "lint": "next lint"
   },
